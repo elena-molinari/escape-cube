@@ -208,6 +208,7 @@ __marimo__/
 
 # Mac OS junk
 .DS_Store
+ **/.DS_Store
 .AppleDouble
 .LSOverride
 ._*
