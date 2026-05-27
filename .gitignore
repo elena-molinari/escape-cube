@@ -1,0 +1,18 @@
+# --- DIPENDENZE (Il blocco più importante) ---
+# Esclude la cartella gigante con tutte le librerie di Node.js
+#chi scarica la cartella non avrà bisogno di scaricare tutte le dipendenze, basta che esegua "npm install" per ricrearla
+node_modules/
+
+# --- FILE DI SISTEMA (Spazzatura di Windows/Mac) ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- LOG ---
+# Esclude i file di log che si creano in caso di errori di Node
+*.log
+npm-debug.log*
+
+# --- CONFIGURAZIONI PRIVATE (Opzionale) ---
+# Se in futuro userai password o chiavi segrete in un file .env
+.env
