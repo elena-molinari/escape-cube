@@ -1,4 +1,5 @@
-# escape-cube
+# ESCAPE CUBE
+
 # Escape Kiosk - Interfaccia Utente
 
 Questa repository contiene l'applicazione web (modalità Kiosk) per l'installazione interattiva "Escape".
