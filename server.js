@@ -14,30 +14,38 @@ const clientSC = new Client(IP, PORT_SC);
 // Diciamo al server di rendere pubblica la cartella 'public'
 app.use(express.static('public'));
 
-// ... (tutto l'inizio del tuo codice va benissimo) ...
-
 io.on('connection', (socket) => {
     console.log('Tablet connesso alla Web App!');
 
     // Ascolta le scelte inviate dall'interfaccia utente
     socket.on('scelta_utente', (data) => {
-        // Formatta l'indirizzo OSC, es: /kiosk/mood -> relax
-        const oscAddress = '/kiosk/' + data.step;
         
-        console.log(`Invio OSC a TD: ${oscAddress} -> ${data.value}`);
-        // Invia il messaggio testuale a TouchDesigner
-        clientTD.send(oscAddress, data.value);
+        // --- BIVIO 1: COMANDI DI SISTEMA (PLAY/STOP) ---
+        if (data.step === 'command') {
+            if (data.value === 'play') {
+                console.log("Comando a SC: PLAY");
+                clientSC.send('/sc/play', 1);
+            } 
+            else if (data.value === 'stop') {
+                console.log("Comando a SC: STOP");
+                clientSC.send('/sc/stop', 1);
+            }
+        } 
+        // --- BIVIO 2: SCELTE AUDIO/VIDEO NORMALI ---
+        else {
+            // 1. Invia a TouchDesigner (per i visual testuali)
+            const oscAddress = '/kiosk/' + data.step;
+            console.log(`Invio OSC a TD: ${oscAddress} -> ${data.value}`);
+            clientTD.send(oscAddress, data.value);
 
-        // Se il dato in arrivo è la macro-scelta dell'ambiente, mandalo anche a SC!
-        // (Assicurati che 'mood' sia il nome dello step che hai usato nel file HTML per Mare, Montagna ecc.)
-        if (data.step === 'mood') {
-            console.log(`Invio OSC a SC: /kiosk/macro -> ${data.value}`);
-            clientSC.send('/kiosk/macro', data.value);
+            // 2. Invia a SuperCollider (mettendo la scelta nella "sala d'attesa")
+            console.log(`Invio OSC a SC (In attesa): /sc/choice -> ${data.value}`);
+            clientSC.send('/sc/choice', data.value);
         }
     });
 });
 
-// Avvio del server sulla porta 3000
+// Avvio del server sulla porta 3000 (0.0.0.0 permette l'accesso dalla rete locale)
 http.listen(3000, '0.0.0.0', () => {
     console.log('SERVER KIOSK ATTIVO!');
     console.log('Apri il browser su PC a: http://localhost:3000');

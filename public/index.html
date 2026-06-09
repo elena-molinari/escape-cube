@@ -209,11 +209,11 @@
         <div class="grid-container" style="align-items: center;">
             <div style="position: relative; margin: 0 40px;">
                 <div class="checkbox-circle"></div>
-                <div id="img-r4-a" class="choice-card" onclick="sendData('relax_4', 'choice_A'); goToPage('p_end')"></div>
+                <div id="img-r4-a" class="choice-card" onclick="sendData('relax_4', 'choice_A'); sendData('command', 'play'); goToPage('p_end')"></div>
             </div>
             <div style="position: relative; margin: 0 40px;">
                 <div class="checkbox-circle"></div>
-                <div id="img-r4-b" class="choice-card" onclick="sendData('relax_4', 'choice_B'); goToPage('p_end')"></div>
+                <div id="img-r4-b" class="choice-card" onclick="sendData('relax_4', 'choice_B'); sendData('command', 'play'); goToPage('p_end')"></div>
             </div>
         </div>
     </div>
@@ -273,11 +273,11 @@
         <div class="grid-container" style="align-items: center;">
             <div style="position: relative; margin: 0 40px;">
                 <div class="checkbox-circle"></div>
-                <div id="img-i4-a" class="choice-card" onclick="sendData('insp_4', 'choice_A'); goToPage('p_end')"></div>
+                <div id="img-i4-a" class="choice-card" onclick="sendData('insp_4', 'choice_A'); sendData('command', 'play'); goToPage('p_end')"></div>
             </div>
             <div style="position: relative; margin: 0 40px;">
                 <div class="checkbox-circle"></div>
-                <div id="img-i4-b" class="choice-card" onclick="sendData('insp_4', 'choice_B'); goToPage('p_end')"></div>
+                <div id="img-i4-b" class="choice-card" onclick="sendData('insp_4', 'choice_B'); sendData('command', 'play'); goToPage('p_end')"></div>
             </div>
         </div>
     </div>
@@ -285,7 +285,7 @@
     <div id="p_end" class="page">
         <h1>Enjoy the experience.</h1>
         <p>Look around you.</p>
-        <button class="small-pill-btn" style="background: #333; margin-top:50px" onclick="goToPage('p1')">Home Page</button>
+        <button class="small-pill-btn" style="background: #333; margin-top:50px" onclick="resetExperience()">Home Page</button>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -340,7 +340,14 @@
                 sendData('insp_3', 'choice_B');
                 sendData('insp_4', 'choice_B');
             }
+
+            sendData('command', 'play');
             goToPage('p_end');
+        }
+
+        function resetExperience() {
+            sendData('command', 'stop'); 
+            goToPage('p1');              
         }
         
     </script>
