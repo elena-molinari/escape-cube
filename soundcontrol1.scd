@@ -5,65 +5,78 @@ if(s.serverRunning.not) { s.boot };
 s.freeAll;
 Buffer.freeAll;
 
-// 1. I TUOI BUS PER I SENSORI (Rimangono invariati)
-~bpmBus = Bus.control(s, 1);
-~gsrBus = Bus.control(s, 1);
 
-// 2. DIZIONARIO DEI BUFFER (La tua libreria audio)
+// --- 1. LIBRERIA AUDIO ---
 ~buffers = Dictionary.new;
 
 if(thisProcess.nowExecutingPath.notNil) {
     myPath = thisProcess.nowExecutingPath.dirname;
-    rootPath = myPath.dirname;
 
-    // Carica QUI tutti i tuoi file audio e assegnali alla stringa esatta
-    // che Node.js invia dal Kiosk (es. 'sea', 'mountain', 'choice_A')
-    ~buffers.put('relax', Buffer.read(s, rootPath +/+ "Sounds/base_relax.wav"));
-    ~buffers.put('sea', Buffer.read(s, rootPath +/+ "Sounds/onde_mare.wav"));
-    ~buffers.put('choice_A', Buffer.read(s, rootPath +/+ "Sounds/gabbiani.wav"));
+    // Tutti i tuoi file audio mappati con il percorso corretto (senza backtracking)
+    ~buffers.put('relax', Buffer.read(s, myPath +/+ "Sounds/Relax/relax.wav"));
+    ~buffers.put('mountain', Buffer.read(s, myPath +/+ "Sounds/Relax/mountain.wav"));
+    ~buffers.put('sea', Buffer.read(s, myPath +/+ "Sounds/Relax/sea.wav"));
+    ~buffers.put('forest', Buffer.read(s, myPath +/+ "Sounds/Relax/forest.wav"));
+    ~buffers.put('stars', Buffer.read(s, myPath +/+ "Sounds/Relax/stars.wav"));
+    ~buffers.put('cloud', Buffer.read(s, myPath +/+ "Sounds/Relax/cloud.wav"));
+    ~buffers.put('wave', Buffer.read(s, myPath +/+ "Sounds/Relax/wave.wav"));
+    ~buffers.put('lavender', Buffer.read(s, myPath +/+ "Sounds/Relax/lavender.wav"));
+    ~buffers.put('rain', Buffer.read(s, myPath +/+ "Sounds/Relax/rain.wav"));
+
+    ~buffers.put('cerchio', Buffer.read(s, myPath +/+ "Sounds/Inspirational/cerchio.wav"));
+    ~buffers.put('fluido', Buffer.read(s, myPath +/+ "Sounds/Inspirational/fluido.wav"));
+    ~buffers.put('frattale', Buffer.read(s, myPath +/+ "Sounds/Inspirational/frattale.wav"));
+    ~buffers.put('mosaico', Buffer.read(s, myPath +/+ "Sounds/Inspirational/mosaico.wav"));
+    ~buffers.put('pesci', Buffer.read(s, myPath +/+ "Sounds/Inspirational/pesci.wav"));
+    ~buffers.put('scale', Buffer.read(s, myPath +/+ "Sounds/Inspirational/scale.wav"));
+    ~buffers.put('verde', Buffer.read(s, myPath +/+ "Sounds/Inspirational/verde.wav"));
+    ~buffers.put('vortice', Buffer.read(s, myPath +/+ "Sounds/Inspirational/vortice.wav"));
 } {
     "ATTENZIONE: Salva il file per i percorsi!".postln;
 };
 
-~activeLayers = Dictionary.new; // I synth che stanno suonando
+~activeLayers = Dictionary.new; // I synth che stanno suonando in questo momento
 ~pendingChoices = Set.new;     // La "sala d'attesa" per le scelte della sessione attuale
 
-// SYNTHDEF (Rimane identico a prima, con gate e fadeTime)
-SynthDef(\layerPlayer, {
-    arg out=0, bufnum, inBpm, inGsr, gate=1, fadeTime=4, amp=1;
-    var sig, env, rateVal, filterVal;
+// --- 2. MOTORINO AUDIO SEMPLIFICATO (Solo player puro + dissolvenze) ---
+SynthDef(\pureLayerPlayer, {
+    arg out=0, bufnum, gate=1, fadeTime=4, amp=0.5;
+    var sig, env;
 
+    // Inviluppo ASR: gestisce il Fade-In (quando nasce) e il Fade-Out (quando gate diventa 0)
     env = EnvGen.kr(Env.asr(fadeTime, 1, fadeTime), gate, doneAction: 2);
-    rateVal = In.kr(inBpm, 1).lag(0.5);
-    filterVal = In.kr(inGsr, 1).lag(0.5);
 
-    sig = PlayBuf.ar(2, bufnum, BufRateScale.kr(bufnum) * rateVal, loop: 1);
-    sig = RLPF.ar(sig, filterVal, 0.5);
+    // Lettura stereo standard alla velocità nativa del file, in loop continuo
+    sig = PlayBuf.ar(2, bufnum, BufRateScale.kr(bufnum), loop: 1);
 
+    // Applichiamo l'inviluppo e il volume
     sig = sig * env * amp;
+
     Out.ar(out, sig);
 }).add;
 
-// 1. RICEVE LE SCELTE (Ma non le suona, le mette in attesa)
+// --- 3. GESTIONE MESSAGGI OSC ---
+
+// 1. RICEVE LE SCELTE (Le mette in coda man mano che l'utente clicca sul tablet)
 OSCdef(\kioskChoiceListener, { |msg|
     var choice = msg[1].asSymbol;
     ("SC memorizza la scelta: " ++ choice).postln;
-    ~pendingChoices.add(choice); // Aggiunge alla lista d'attesa (Set evita i doppioni)
+    ~pendingChoices.add(choice); // Il Set evita automaticamente i duplicati
 }, '/sc/choice');
 
-// 2. COMANDO PLAY (Fa partire tutto insieme)
+// 2. COMANDO PLAY (Scatta alla fine del Kiosk e avvia tutti i layer salvati insieme)
 OSCdef(\kioskPlayListener, { |msg|
-    "▶ COMANDO PLAY RICEVUTO! Avvio tutti i layer...".postln;
+    "▶ COMANDO PLAY RICEVUTO! Avvio la scena sonora...".postln;
 
     ~pendingChoices.do({ |choice|
         if(~buffers.includesKey(choice)) {
+            // Se la traccia non è già attiva, la facciamo partire
             if(~activeLayers[choice].isNil) {
                 ~activeLayers.put(choice,
-                    Synth(\layerPlayer, [
+                    Synth(\pureLayerPlayer, [
                         \bufnum, ~buffers[choice],
-                        \inBpm, ~bpmBus,
-                        \inGsr, ~gsrBus,
-                        \fadeTime, 4 // 4 secondi di dissolvenza in entrata
+                        \fadeTime, 4, // 4 secondi di dissolvenza incrociata in entrata
+                        \amp, 0.5     // Impostato a 0.5 per evitare che 4-5 tracce insieme vadano in distorsione (clipping)
                     ])
                 );
             }
@@ -71,18 +84,19 @@ OSCdef(\kioskPlayListener, { |msg|
     });
 }, '/sc/play');
 
-// 3. COMANDO STOP (Fade-out generale e pulizia)
+// 3. COMANDO STOP (Scatta quando si preme Home: fa il fade-out di tutto e resetta)
 OSCdef(\kioskStopListener, { |msg|
     "⏹ COMANDO STOP RICEVUTO! Fade-out in corso...".postln;
 
-    // Dice a tutti i synth attivi di abbassare il volume e spegnersi (gate = 0)
+    // Invia il comando di chiusura (gate=0) a tutte le tracce attive
     ~activeLayers.keysValuesDo({ |key, synth|
         synth.set(\gate, 0);
     });
 
-    // Svuota i dizionari per prepararsi al prossimo utente
+    // Pulisce i registri per prepararsi alla sessione dell'utente successivo
     ~activeLayers.clear;
     ~pendingChoices.clear;
 }, '/sc/stop');
 
-"--- MOTORE MULTI-LAYER AVVIATO (IN ATTESA DI PLAY) ---".postln;
+"--- MOTORE MULTI-TRACK AUDIO PURO ATTIVO (IN ATTESA DI PLAY) ---".postln;
+)
