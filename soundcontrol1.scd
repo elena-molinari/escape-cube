@@ -14,10 +14,10 @@ if(thisProcess.nowExecutingPath.notNil) {
 
     // Tutti i tuoi file audio mappati con il percorso corretto (senza backtracking)
     ~buffers.put('relax', Buffer.read(s, myPath +/+ "Sounds/Relax/relax.wav"));
-    ~buffers.put('mountain', Buffer.read(s, myPath +/+ "Sounds/Relax/mountain.wav"));
+    // ~buffers.put('mountain', Buffer.read(s, myPath +/+ "Sounds/Relax/mountain.wav"));
     ~buffers.put('sea', Buffer.read(s, myPath +/+ "Sounds/Relax/sea.wav"));
     ~buffers.put('forest', Buffer.read(s, myPath +/+ "Sounds/Relax/forest.wav"));
-    ~buffers.put('stars', Buffer.read(s, myPath +/+ "Sounds/Relax/stars.wav"));
+    // ~buffers.put('stars', Buffer.read(s, myPath +/+ "Sounds/Relax/stars.wav"));
     ~buffers.put('cloud', Buffer.read(s, myPath +/+ "Sounds/Relax/cloud.wav"));
     ~buffers.put('wave', Buffer.read(s, myPath +/+ "Sounds/Relax/wave.wav"));
     ~buffers.put('lavender', Buffer.read(s, myPath +/+ "Sounds/Relax/lavender.wav"));
@@ -25,12 +25,12 @@ if(thisProcess.nowExecutingPath.notNil) {
 
     ~buffers.put('cerchio', Buffer.read(s, myPath +/+ "Sounds/Inspirational/cerchio.wav"));
     ~buffers.put('fluido', Buffer.read(s, myPath +/+ "Sounds/Inspirational/fluido.wav"));
-    ~buffers.put('frattale', Buffer.read(s, myPath +/+ "Sounds/Inspirational/frattale.wav"));
-    ~buffers.put('mosaico', Buffer.read(s, myPath +/+ "Sounds/Inspirational/mosaico.wav"));
-    ~buffers.put('pesci', Buffer.read(s, myPath +/+ "Sounds/Inspirational/pesci.wav"));
-    ~buffers.put('scale', Buffer.read(s, myPath +/+ "Sounds/Inspirational/scale.wav"));
-    ~buffers.put('verde', Buffer.read(s, myPath +/+ "Sounds/Inspirational/verde.wav"));
-    ~buffers.put('vortice', Buffer.read(s, myPath +/+ "Sounds/Inspirational/vortice.wav"));
+    ~buffers.put('alto', Buffer.read(s, myPath +/+ "Sounds/Inspirational/alto.wav"));
+    ~buffers.put('rigido', Buffer.read(s, myPath +/+ "Sounds/Inspirational/rigido.wav"));
+    ~buffers.put('caldo', Buffer.read(s, myPath +/+ "Sounds/Inspirational/caldo.wav"));
+    ~buffers.put('basso', Buffer.read(s, myPath +/+ "Sounds/Inspirational/basso.wav"));
+    ~buffers.put('freddo', Buffer.read(s, myPath +/+ "Sounds/Inspirational/freddo.wav"));
+    ~buffers.put('linee', Buffer.read(s, myPath +/+ "Sounds/Inspirational/linee.wav"));
 } {
     "ATTENZIONE: Salva il file per i percorsi!".postln;
 };
