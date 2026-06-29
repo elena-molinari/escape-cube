@@ -1,59 +1,52 @@
-# ESCAPE CUBE
+# Escape Cube
 
-# Escape Kiosk - Interfaccia Utente
+## Introduction
 
-Questa repository contiene l'applicazione web (modalità Kiosk) per l'installazione interattiva "Escape".
-L'interfaccia permette agli utenti di personalizzare la propria esperienza (o scegliere un percorso rapido) e comunica con **TouchDesigner** in tempo reale inviando pacchetti **OSC**.
+Escape Cube is an immersive experience: a room equipped with projectors and speakers, designed to be a safe place where you can disconnect and recover from stress.
 
----
+The idea was born for work environments: a space to take a break, recharge, or find inspiration during creative jobs. However, the concept can easily be extended to any situation that causes high stress or anxiety, such as festivals and concerts. In those scenarios, the Escape Cube could become a place to wait for the event to start or, most importantly, a refuge for people experiencing panic attacks due to the crowd.
 
-## 1. Prerequisiti
-Per far funzionare il progetto sul tuo computer, devi avere installato **Node.js** (il motore che fa girare il server locale).
-* Scarica e installa Node.js (versione LTS) da: [nodejs.org](https://nodejs.org/)
-* *Nota per Windows: durante l'installazione, lascia le impostazioni predefinite e riavvia il PC al termine.*
+Even though the full version of the project requires a properly equipped room, on GitHub we present a demo version that you can try directly from your pc: all you need is a pair of headphones and your computer screen to experience it.
 
 ---
 
-## 2. Installazione e Avvio
-La prima volta che scarichi questo progetto da GitHub, devi installare le librerie necessarie (Express, Socket.io, Node-OSC).
+## Experience
 
-1. Apri la cartella del progetto con **Visual Studio Code**.
-2. Apri il terminale integrato
-3. Installa le dipendenze digitando:
-    npm install
+Outside the room there is a touchscreen display where you can choose to personalize your experience or jump straight in with a randomly generated session. If you choose personalization, you are presented with a short questionnaire: first you pick the type of experience you want — relaxing or inspiring — then you go through a series of image pairs, selecting the one you prefer each time.
 
-4. Avvia il server centrale digitando:
-    node server.js
-
-*(Lascia il terminale aperto e in esecuzione finché usi l'installazione).*
+Once inside, the projections on the walls and the audio are shaped around your choices. For those who want an even more immersive experience, the room is equipped with wearable sensors that measure heart rate and skin humidity, adjusting the projections in real time accordingly.
 
 ---
 
-## 3. Utilizzo per i Test su PC
-Se vuoi testare l'interfaccia e la grafica direttamente sul computer dove sta girando il server:
-* Apri il tuo browser (Chrome, Edge, Safari).
-* Vai all'indirizzo: **http://localhost:3000**
+## How to run it
 
----
+### Prerequisites
 
-## 4. Connessione del Tablet (Kiosk Mode)
-Per usare l'applicazione sul tablet fisico dell'installazione, segui attentamente questi passaggi:
+Before getting started, make sure you have the following installed on your computer:
 
-### Regola d'oro per la Rete
-Il PC (che fa da server) e il Tablet (che fa da schermo) **DEVONO** essere connessi alla **stessa rete Wi-Fi**. 
-*Attenzione: Le reti universitarie bloccano la comunicazione tra dispositivi. Usa l'Hotspot personale del tuo smartphone.*
+- **Node.js** (LTS version) — download it from [nodejs.org](https://nodejs.org/). On Windows, keep the default settings during installation and restart your PC when done.
+- **TouchDesigner** — download it from [derivative.ca](https://derivative.ca/).
 
-### Come collegarsi:
-1. Connetti sia il PC che il Tablet al tuo Hotspot.
-2. Trova l'indirizzo IP del PC:
-   * Su **Windows**: apri un nuovo terminale in VS Code, digita `ipconfig` e cerca la riga *Indirizzo IPv4* (es. 192.168.X.X).
-   * Su **Mac**: digita `ipconfig getifaddr en0`.
-3. Prendi il Tablet, apri il browser (o l'App Kiosk) e inserisci l'indirizzo IP del PC seguito dalla porta :3000.
-   * **Esempio:** http://192.168.43.50:3000
+### Installation and setup
 
----
+The first time you download the project from GitHub, open the project folder in Visual Studio Code, launch the integrated terminal and type: npm install
 
-## Struttura del Progetto
-* **server.js**: Il cervello dell'app. Gestisce le connessioni in entrata e formatta i messaggi verso TouchDesigner.
-* **public/index.html**: Il codice frontend (struttura, design e logica dei bottoni).
-* **public/img_re/**: Cartella contenente tutte le risorse grafiche e le texture usate nell'interfaccia.
+This installs all the necessary libraries. Once completed, start the server with: node server.js
+
+Keep the terminal open and running for the entire duration of the experience.
+
+### Trying the demo on your pc
+
+Open your browser (Chrome, Edge or Safari) and go to:
+
+http://localhost:3000
+
+### Tablet connection (physical installation)
+
+To use the application on the physical tablet, the pc and the tablet must be connected to the same Wi-Fi network. Important: university networks block communication between devices — use your smartphone's personal hotspot instead.
+
+1. Connect both the pc and the tablet to your hotspot
+2. Find the IP address of your pc:
+   - On Windows: open the terminal and type `ipconfig`, then look for the *IPv4 Address* line
+   - On Mac: type `ipconfig getifaddr en0`
+3. On the tablet, open the browser and enter the pc's IP address followed by `:3000` — for example: `http://192.168.43.50:3000`
