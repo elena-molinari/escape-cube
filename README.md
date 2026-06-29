@@ -78,12 +78,13 @@ To use the application on the physical tablet, the pc and the tablet must be con
 
 ## Technologies
 
-- **TouchDesigner** — generative visuals and projections
+- **HTML5 / CSS3 / JavaScript** — Kiosk User Interface
 - **Node.js** — local server and communication management
+- **TouchDesigner** — generative visuals and projections
 - **SuperCollider** — audio design and real-time sound control
 - **Arduino** — wearable sensors management: GSR Sensor (Galvanic Skin Response) & Pulse Sensor (Heart Rate)
 - **Socket.io** — real-time communication between server and interface
-- **OSC (Open Sound Control)** — communication protocol between Node.js and TouchDesigner
+- **OSC (Open Sound Control)** — communication protocol between Node.js, TouchDesigner and SuperCollider
 - Se c'è altro inseritelo qua
 
 ## Challenges, Accomplishments and Lessons Learned
