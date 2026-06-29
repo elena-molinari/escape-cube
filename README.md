@@ -71,8 +71,8 @@ To use the application on the physical tablet, the pc and the tablet must be con
 
 | Name | Student ID | Contribution |
 |------|-----------|--------------|
-| Antognetti Andrea | 11082358 | Audio design |
-| Catalano Alessandro | **da mettere** | Sensors management and SuperCollider development|
+| Antognetti Andrea | 11082358 | Audio design and SuperCollider development |
+| Catalano Alessandro | 11080052 | Web application development and Sensors management|
 | Molinari Elena | **da mettere** | TouchDesigner visual development |
 | Venier Anna | **da mettere** | TouchDesigner visual development |
 
@@ -81,7 +81,7 @@ To use the application on the physical tablet, the pc and the tablet must be con
 - **TouchDesigner** — generative visuals and projections
 - **Node.js** — local server and communication management
 - **SuperCollider** — audio design and real-time sound control
-- **Arduino** — wearable sensors management **mettere il nome dei sensori**
+- **Arduino** — wearable sensors management: GSR Sensor (Galvanic Skin Response) & Pulse Sensor (Heart Rate)
 - **Socket.io** — real-time communication between server and interface
 - **OSC (Open Sound Control)** — communication protocol between Node.js and TouchDesigner
 - Se c'è altro inseritelo qua
