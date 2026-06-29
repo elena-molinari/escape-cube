@@ -1,18 +1,33 @@
-# Escape Cube
+
+<p align="center">
+  <img src="images/Logo2.png" width="600" />
+</p>
+<p align="center">
+  <em>Escape Cube is an immersive experience: a room equipped with projectors and speakers, designed to be a safe place where you can disconnect and recover from stress.</em>
+</p>
 
 ## Introduction
-
-Escape Cube is an immersive experience: a room equipped with projectors and speakers, designed to be a safe place where you can disconnect and recover from stress.
 
 The idea was born for work environments: a space to take a break, recharge, or find inspiration during creative jobs. However, the concept can easily be extended to any situation that causes high stress or anxiety, such as festivals and concerts. In those scenarios, the Escape Cube could become a place to wait for the event to start or, most importantly, a refuge for people experiencing panic attacks due to the crowd.
 
 Even though the full version of the project requires a properly equipped room, on GitHub we present a demo version that you can try directly from your pc: all you need is a pair of headphones and your computer screen to experience it.
 
+![Escape Cube](images/EscapeCube.png)
+
 ---
 
 ## Experience
 
-Outside the room there is a touchscreen display where you can choose to personalize your experience or jump straight in with a randomly generated session. If you choose personalization, you are presented with a short questionnaire: first you pick the type of experience you want — relaxing or inspiring — then you go through a series of image pairs, selecting the one you prefer each time.
+Outside the room there is a touchscreen display where you can choose to personalize your experience or jump straight in with a randomly generated session. If you choose personalization, you are presented with a short questionnaire: first you pick the type of experience you want, if relaxing or inspiring, then you go through a series of image pairs, selecting the one you prefer each time.
+
+<p>
+  <img src="images/wallpaper.jpeg" width="49%" />
+  <img src="images/ChooseExperience.jpeg" width="49%" />
+</p>
+<p>
+  <img src="images/ChooseRelaxing.jpeg" width="49%" />
+  <img src="images/Choose inspiration.jpeg" width="49%" />
+</p>
 
 Once inside, the projections on the walls and the audio are shaped around your choices. For those who want an even more immersive experience, the room is equipped with wearable sensors that measure heart rate and skin humidity, adjusting the projections in real time accordingly.
 
@@ -50,3 +65,41 @@ To use the application on the physical tablet, the pc and the tablet must be con
    - On Windows: open the terminal and type `ipconfig`, then look for the *IPv4 Address* line
    - On Mac: type `ipconfig getifaddr en0`
 3. On the tablet, open the browser and enter the pc's IP address followed by `:3000` — for example: `http://192.168.43.50:3000`
+
+
+## Team
+
+| Name | Student ID | Contribution |
+|------|-----------|--------------|
+| Antognetti Andrea | 11082358 | Audio design |
+| Catalano Alessandro | **da mettere** | Sensors management and SuperCollider development|
+| Molinari Elena | **da mettere** | TouchDesigner visual development |
+| Venier Anna | **da mettere** | TouchDesigner visual development |
+
+## Technologies
+
+- **TouchDesigner** — generative visuals and projections
+- **Node.js** — local server and communication management
+- **SuperCollider** — audio design and real-time sound control
+- **Arduino** — wearable sensors management **mettere il nome dei sensori**
+- **Socket.io** — real-time communication between server and interface
+- **OSC (Open Sound Control)** — communication protocol between Node.js and TouchDesigner
+- Se c'è altro inseritelo qua
+
+## Challenges, Accomplishments and Lessons Learned
+
+### Challenges
+*What kind of challenges did you run into during this project?*
+
+### Accomplishments
+*What are you proud of?*
+
+
+### Lessons Learned
+*What did you learn during the project?*
+
+
+## Video Demo
+
+### mettere qua il video
+
