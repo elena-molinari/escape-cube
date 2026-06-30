@@ -29,7 +29,7 @@ if(thisProcess.nowExecutingPath.notNil) {
     ~buffers.put('freddo', Buffer.read(s, myPath +/+ "Sounds/Inspirational/freddo.wav"));
     ~buffers.put('linee', Buffer.read(s, myPath +/+ "Sounds/Inspirational/linee.wav"));
 } {
-    "ATTENZIONE: Salva il file per i percorsi!".postln;
+    "ATTENTION: Save the fileS in the right path!".postln;
 };
 
 ~activeLayers = Dictionary.new; 
