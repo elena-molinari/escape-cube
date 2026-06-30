@@ -124,23 +124,12 @@
 <body>
 
     <div id="p1" class="page active">
-        <button class="big-title-btn" onclick="goToPage('p_macro')">
+        <button class="big-title-btn" onclick="quickEscape()">
             Escape
         </button>
         <button class="small-pill-btn" onclick="goToPage('p2')">
             Personalize the experience
         </button>
-    </div>
-
-    <div id="p_macro" class="page">
-        <h1>Choose your vibe</h1>
-        
-        <div class="grid-container" style="max-width: 800px;">
-            <button class="mood-btn" onclick="triggerEscape('sea')">Mare</button>
-            <button class="mood-btn" onclick="triggerEscape('mountain')">Montagna</button>
-            <button class="mood-btn" onclick="triggerEscape('art')">Arte</button>
-            <button class="mood-btn" onclick="triggerEscape('sport')">Sport</button>
-        </div>
     </div>
 
     <div id="p2" class="page">
@@ -311,34 +300,30 @@
             }
         }
 
-        function triggerEscape(macroChoice) {
-            if (macroChoice === 'sea') {
-                sendData('mood', 'relax');
-                sendData('relax_1', 'sea');
-                sendData('relax_2', 'stars');
-                sendData('relax_3', 'wave');
-                sendData('relax_4', 'rain');
-            } 
-            else if (macroChoice === 'mountain') {
-                sendData('mood', 'relax');
-                sendData('relax_1', 'mountain');
-                sendData('relax_2', 'forest');
-                sendData('relax_3', 'cloud');
-                sendData('relax_4', 'rain');
-            } 
-            else if (macroChoice === 'art') {
-                sendData('mood', 'inspiration');
-                sendData('insp_1', 'choice_A');
-                sendData('insp_2', 'choice_A');
-                sendData('insp_3', 'choice_A');
-                sendData('insp_4', 'choice_A');
-            } 
-            else if (macroChoice === 'sport') {
-                sendData('mood', 'inspiration');
-                sendData('insp_1', 'choice_B');
-                sendData('insp_2', 'choice_B');
-                sendData('insp_3', 'choice_B');
-                sendData('insp_4', 'choice_B');
+        function quickEscape() {
+            const mood = Math.random() < 0.5 ? 'relax' : 'inspiration';
+            sendData('mood', mood);
+
+            if (mood === 'relax') {
+                const r1 = ['sea', 'forest'];
+                const r2 = ['vang', 'kand'];
+                const r3 = ['cloud', 'wave'];
+                const r4 = ['lavender', 'rain'];
+
+                sendData('relax_1', r1[Math.floor(Math.random() * r1.length)]);
+                sendData('relax_2', r2[Math.floor(Math.random() * r2.length)]);
+                sendData('relax_3', r3[Math.floor(Math.random() * r3.length)]);
+                sendData('relax_4', r4[Math.floor(Math.random() * r4.length)]);
+            } else {
+                const i1 = ['cerchio', 'linee'];
+                const i2 = ['fluido', 'rigido'];
+                const i3 = ['caldo', 'freddo'];
+                const i4 = ['basso', 'alto'];
+
+                sendData('insp_1', i1[Math.floor(Math.random() * i1.length)]);
+                sendData('insp_2', i2[Math.floor(Math.random() * i2.length)]);
+                sendData('insp_3', i3[Math.floor(Math.random() * i3.length)]);
+                sendData('insp_4', i4[Math.floor(Math.random() * i4.length)]);
             }
 
             sendData('command', 'play');
