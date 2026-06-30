@@ -73,7 +73,7 @@ To use the application on the physical tablet, the pc and the tablet must be con
 |------|-----------|--------------|
 | Antognetti Andrea | 11082358 | Audio design and SuperCollider development |
 | Catalano Alessandro | 11080052 | Web application development and Sensors management|
-| Molinari Elena | **da mettere** | TouchDesigner visual development |
+| Molinari Elena | 10992455 | TouchDesigner and Stream Diffusion visual development|
 | Venier Anna | **da mettere** | TouchDesigner visual development |
 
 ## Technologies
