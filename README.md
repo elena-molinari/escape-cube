@@ -35,6 +35,10 @@ The visuals projected inside the room are generated in real time by **TouchDesig
 
 ![Forest Van Gogh](images/forestvangogh.gif)
 ![Marek](images/marekand.gif)
+![Cerchi Liquidi](images/Cerchi_liquidi.gif)
+![Cerchi Rigidi](images/Cerchi_rigidi.gif)
+![Linee Liquide](images/Linee_liquide.gif)
+![Linee Rigide](images/Linee_rigide.gif)
 
 
 ---
@@ -80,7 +84,7 @@ To use the application on the physical tablet, the pc and the tablet must be con
 | Antognetti Andrea | 11082358 | Audio design and SuperCollider development |
 | Catalano Alessandro | 11080052 | Web application development and Sensors management|
 | Molinari Elena | 10992455 | TouchDesigner and Stream Diffusion visual development|
-| Venier Anna | **da mettere** | TouchDesigner visual development |
+| Venier Anna | 10684327 | TouchDesigner and Stream Diffusion visual development |
 
 ## Technologies
 
