@@ -31,6 +31,12 @@ Outside the room there is a touchscreen display where you can choose to personal
 
 Once inside, the projections on the walls and the audio are shaped around your choices. For those who want an even more immersive experience, the room is equipped with wearable sensors that measure heart rate and skin humidity, adjusting the projections in real time accordingly.
 
+The visuals projected inside the room are generated in real time by **TouchDesigner**, which can drive a **Stable Diffusion** pipeline to produce AI-generated images. The result is a continuously evolving environment. Here are some examples:
+
+![Forest Van Gogh](images/forestvangogh.gif)
+![Marek](images/marekand.gif)
+
+
 ---
 
 ## How to run it
