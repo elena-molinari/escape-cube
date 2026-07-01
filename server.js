@@ -4,23 +4,22 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const { Client } = require('node-osc');
 
-// --- CONFIGURAZIONE OSC ---
-const IP = '127.0.0.1'; // L'IP del computer dove gira TouchDesigner
-const PORT_TD = 1000;      // La porta OSC In di TouchDesigner
-const PORT_SC = 57120;     // La porta OSC In di SuperCollider
+// --- OSC CONFIG ---
+const IP = '127.0.0.1';    // The IP address of the computer running TouchDesigner
+const PORT_TD = 1000;      // The OSC In port in TouchDesigner
+const PORT_SC = 57120;     //  The OSC In port in SuperCollider
 const clientTD = new Client(IP, PORT_TD);
 const clientSC = new Client(IP, PORT_SC);
 
-// Diciamo al server di rendere pubblica la cartella 'public'
 app.use(express.static('public'));
 
 io.on('connection', (socket) => {
     console.log('Tablet connesso alla Web App!');
 
-    // Ascolta le scelte inviate dall'interfaccia utente
+    // Listen for selections sent from the user interface
     socket.on('scelta_utente', (data) => {
         
-        // --- BIVIO 1: COMANDI DI SISTEMA (PLAY/STOP) ---
+        //--- SYSTEM CONTROLS (PLAY/STOP) ---
         if (data.step === 'command') {
             if (data.value === 'play') {
                 console.log("Comando a SC: PLAY");
@@ -31,21 +30,21 @@ io.on('connection', (socket) => {
                 clientSC.send('/sc/stop', 1);
             }
         } 
-        // --- BIVIO 2: SCELTE AUDIO/VIDEO NORMALI ---
+        // --- STANDARD AUDIO/VIDEO OPTIONS ---
         else {
-            // 1. Invia a TouchDesigner (per i visual testuali)
+            // 1. Send to TouchDesigner (for text-based visuals)
             const oscAddress = '/kiosk/' + data.step;
             console.log(`Invio OSC a TD: ${oscAddress} -> ${data.value}`);
             clientTD.send(oscAddress, data.value);
 
-            // 2. Invia a SuperCollider (mettendo la scelta nella "sala d'attesa")
+            // 2. Send to SuperCollider (placing the selection in the “waiting room”)
             console.log(`Invio OSC a SC (In attesa): /sc/choice -> ${data.value}`);
             clientSC.send('/sc/choice', data.value);
         }
     });
 });
 
-// Avvio del server sulla porta 3000 (0.0.0.0 permette l'accesso dalla rete locale)
+// Start the server on port 3000 ( 0.0.0.0 for access the local network)
 http.listen(3000, '0.0.0.0', () => {
     console.log('SERVER KIOSK ATTIVO!');
     console.log('Apri il browser su PC a: http://localhost:3000');
