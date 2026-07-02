@@ -33,12 +33,16 @@ Once inside, the projections on the walls and the audio are shaped around your c
 
 The visuals projected inside the room are generated in real time by **TouchDesigner**, which can drive a **Stable Diffusion** pipeline to produce AI-generated images. The result is a continuously evolving environment. Here are some examples:
 
-![Forest Van Gogh](images/forestvangogh.gif)
-![Marek](images/marekand.gif)
-![Cerchi Liquidi](images/Cerchi_liquidi.gif)
-![Cerchi Rigidi](images/Cerchi_rigidi.gif)
-![Linee Liquide](images/Linee_liquide.gif)
-![Linee Rigide](images/Linee_rigide.gif)
+<p align="center">
+  <img src="images/forestvangogh.gif" width="32%" alt="Forest Van Gogh" />
+  <img src="images/marekand.gif" width="32%" alt="Marek" />
+  <img src="images/Cerchi_liquidi.gif" width="32%" alt="Cerchi Liquidi" />
+</p>
+<p align="center">
+  <img src="images/Cerchi_rigidi.gif" width="32%" alt="Cerchi Rigidi" />
+  <img src="images/Linee_liquide.gif" width="32%" alt="Linee Liquide" />
+  <img src="images/Linee_rigide.gif" width="32%" alt="Linee Rigide" />
+</p>
 
 
 ---
