@@ -13,8 +13,8 @@ boolean isPeak = false;
 const int beatThreshold = 8;    
 
 // --- VALORI DI DEFAULT (FALLBACK) ---
-const int defaultGSR = 450;  // Valore standard di rilassamento per il GSR
-const int defaultBPM = 72;   // Battito standard a riposo (BPM)
+const int defaultGSR = 520;  // Valore standard di rilassamento per il GSR
+const int defaultBPM = 82;   // Battito standard a riposo (BPM)
 
 void setup() {
   Serial.begin(9600);
@@ -63,9 +63,8 @@ void loop() {
   int finalBPMToSend = bpm;
 
   // FALLBACK GSR: Se il sensore non è indossato (valore a vuoto molto basso)
-  if (gsrValue < 50) {
-    // Genera un valore simulato attorno a 450 con una micro-variazione (+/- 2)
-    finalGSRToSend = defaultGSR + random(-2, 3);
+  if (gsrValue < 50 || gsrValue > 1000) {
+  finalGSRToSend = defaultGSR + random(-3, 4);
   }
 
   // FALLBACK BATTITO: Se il battito è a 0 (dito tolto o lettura errata)
