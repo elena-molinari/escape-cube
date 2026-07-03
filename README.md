@@ -188,8 +188,8 @@ SuperCollider receives OSC messages from the Node.js server and uses them to bui
 
 At startup, the system loads a library of audio files divided into two main groups:
 
-- relaxing and natural textures: such as sea, forest, rain, clouds, and waves
-- inspirational layers connected to abstract qualities: such as shape, movement, color, and spatial feeling.
+- Natural textures, for the relaxing path: sea, forest, rain, clouds, and waves sounds.
+- Meditative sounds, for the inspirational path, each occupying a distinct frequency range: pads, drones, and environmental sound effects
 
 When the user answers the questionnaire, each selected option is sent to SuperCollider as an OSC message. The selected sounds are stored in a temporary set of pending choices, but they do not start immediately. This allows the system to collect all the user’s answers before launching the actual experience.
 
