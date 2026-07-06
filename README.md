@@ -147,8 +147,10 @@ The low/high contrast choice controls the contrast of the image.
 
 Once the experience starts, the sensors introduce a second level of variation:
 
-- BPM / heart rate: controls the speed of the visual movement
-- skin humidity: controls how frequently the color changes. The color variation always remains inside the warm or cold range selected at the beginning.
+- skin humidity: controls the contrast and brightness of the scene. Higher values produce brighter, more saturated colors and increase the separation between the visual elements and the background.
+- BPM / heart rate: controls how frequently a new color is generated and how quickly the current color transitions toward it. A lower BPM produces slower and more gradual variations, while a higher BPM produces more frequent and faster color changes.
+
+The generated colors always remain within the warm or cold family selected during the questionnaire. Sensor data therefore changes the evolution and intensity of the palette without altering the user’s original visual preference.
 
 <a id="relaxing-path"></a>
 
@@ -227,8 +229,8 @@ In the Inspirational path:
 
 | Sensor | Controlled Parameter | Effect |
 |---|---|---|
-| BPM / heart rate | Movement speed | Higher BPM increases the speed of the animation |
-| Skin humidity | Color-change interval | Higher values make the color change more frequently |
+| BPM / heart rate | Color-change interval | Higher values make the color change more frequently |
+| Skin humidity | Color contrast | Higher values produce brighter and more saturated colors |
 
 In the Relaxing path:
 
