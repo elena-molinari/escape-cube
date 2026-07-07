@@ -2,20 +2,20 @@
 model_id: "stabilityai/sdxl-turbo"
 
 # Core StreamDiffusion parameters
-t_index_list: [24]
+t_index_list: [1]
 width: 512
 height: 512
 device: "cuda"
 dtype: "float16"
 
 # Generation parameters (defaults, can be updated via OSC)
-guidance_scale: 1.1339999437332153
+guidance_scale: 1.0
 num_inference_steps: 50
-seed: 2895443
-delta: 1.1
+seed: 4932250
+delta: 1.0
 
 # Prompt configuration (supports both single and blending)
-prompt: "Swirling texture"
+prompt: "default fancy banana"
 negative_prompt: ""
 
 # Optimization settings
@@ -69,8 +69,8 @@ td_settings:
   osc_transmit_port: 8583
   
   # Memory interface
-  input_mem_name: 'StreamDiffusionTD_512-512'
-  output_mem_name: 'StreamDiffusionTD_512-512_out'
+  input_mem_name: 'StreamDiffusionTD1_512-512'
+  output_mem_name: 'StreamDiffusionTD1_512-512_out'
   
   # Debug settings
   debug_mode: true
