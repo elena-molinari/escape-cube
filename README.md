@@ -175,7 +175,7 @@ Depending on the user’s choices, TouchDesigner selects the correct natural env
 
 The sensors also affect the Relaxing path:
 
-- BPM / heart rate: controls the temporal evolution of the StreamDiffusion process
+- BPM / heart rate: controls the asbtraction evolution of the StreamDiffusion process (step schedule)
 - skin humidity: changes the weight of an additional prompt block, increasing or reducing the intensity of the generated visual transformation.
 
 In this way, the Relaxing / Inspirational scene remains slow and contemplative, but it is never completely static. The natural video, the selected artistic style, and the sensor-driven prompt weights create a continuous transformation that accompanies the user throughout the experience.
@@ -221,7 +221,7 @@ The sensor system adds real-time adaptation to the installation.
 The current prototype uses two sensor values:
 
 - BPM / heart rate
-- skin humidity
+- Skin humidity
 
 These values are sent from Arduino to TouchDesigner through serial communication.
 
@@ -236,12 +236,18 @@ In the Relaxing path:
 
 | Sensor | Controlled Parameter | Effect |
 |---|---|---|
-| BPM / heart rate | StreamDiffusion temporal evolution | Higher BPM increases the evolution of the generated image |
+| BPM / heart rate | StreamDiffusion abstraction evolution | Higher BPM increases the evolution of the generated image |
 | Skin humidity | Prompt weight | Higher values increase the influence of an additional visual transformation layer |
 
 The sensor values are clamped within predefined ranges to avoid extreme or unstable behavior. This keeps the system controlled and coherent, even when the incoming data changes quickly.
 
 The goal is not to create a direct one-to-one visualization of the body. Instead, the sensors are used as subtle modulation signals, allowing the cube to adapt to the user while preserving a calm and immersive atmosphere.
+
+<p align="center">
+  <img src="images/sensors.jpeg" width="30%" alt="Forest Van Gogh" />
+</p>
+
+
 
 --- 
 
