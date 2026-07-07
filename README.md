@@ -243,7 +243,11 @@ The sensor values are clamped within predefined ranges to avoid extreme or unsta
 
 The goal is not to create a direct one-to-one visualization of the body. Instead, the sensors are used as subtle modulation signals, allowing the cube to adapt to the user while preserving a calm and immersive atmosphere.
 
-![Sensors](images/sensors.jpeg)
+<p align="center">
+  <img src="images/sensors.jpeg" width="30%" alt="Forest Van Gogh" />
+</p>
+
+
 
 --- 
 
