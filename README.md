@@ -388,16 +388,11 @@ From a design perspective, Escape Cube helped us understand how sound, image, co
 
 ## Video Demo
 
-A video demo of the project can be added here.
+This is a video demo of the project: 
 
-```markdown
+
 [Watch the video demo](https://youtu.be/ZHSwKUzEsfI)
-```
 
-If the video is uploaded directly to GitHub, replace the placeholder with the GitHub video link.
 
-Example:
 
-```markdown
-https://github.com/user-attachments/assets/YOUR_VIDEO_ID
-```
+
